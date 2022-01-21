@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db-deployment
-  namespace: <YOUR NAMESPACE>
+  namespace: mbardos
   labels:
     app: db
 spec:
-  replicas: <REPLICAS>
+  replicas: 1
   strategy:
     type: Recreate
   minReadySeconds: 20
