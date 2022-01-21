@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
-  namespace: mbardos
+  name: db-deployment
+  namespace: <YOUR NAMESPACE>
   labels:
-    app: app
+    app: db
 spec:
-  replicas: 1
+  replicas: <REPLICAS>
   strategy:
     type: Recreate
   minReadySeconds: 20
   selector:
     matchLabels:
-      app: app-deployment
+      app: db
   template:
     metadata:
       labels:
-        app: app-deployment
+        app: db
     spec:
       containers:
       - envFrom:
         - secretRef:
             name: db-secret
-        name: app-deployment
-        image:  harbor.dev.afsmtddso.com/mbardos/app:971c881-abc27b4
+        name: db-deployment
+        image: harbor.dev.afsmtddso.com/mbardos/db:971c881-abc27b4
         ports:
-        - containerPort: 5000
+        - containerPort: 5432
